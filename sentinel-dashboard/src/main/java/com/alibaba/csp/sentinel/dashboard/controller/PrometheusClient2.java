@@ -73,6 +73,12 @@ public class PrometheusClient2 {
                 samples.add(setSuccessQps(metricVo));
                 samples.add(setExceptionQps(metricVo));
                 samples.add(setRt(metricVo));
+
+                samples.add(resetPassQps(metricVo));
+                samples.add(resetBlockQps(metricVo));
+                samples.add(resetSuccessQps(metricVo));
+                samples.add(resetExceptionQps(metricVo));
+                samples.add(resetRt(metricVo));
             }
         }
         metricFamilySamplesList.add(metricFamilySamples);
@@ -145,6 +151,19 @@ public class PrometheusClient2 {
         return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,metricVo.getPassQps(),metricVo.getTimestamp());
     }
 
+    private Collector.MetricFamilySamples.Sample resetPassQps(MetricVo metricVo){
+        List<String> labelName = new ArrayList<>();
+        labelName.add("application");
+        labelName.add("uri");
+        labelName.add("type");
+
+        List<String> labelValue = new ArrayList<>();
+        labelValue.add(metricVo.getApp());
+        labelValue.add(metricVo.getResource());
+        labelValue.add("passQps");
+        return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,0,metricVo.getTimestamp() + 500);
+    }
+
     private Collector.MetricFamilySamples.Sample setBlockQps(MetricVo metricVo){
         List<String> labelName = new ArrayList<>();
         labelName.add("application");
@@ -156,6 +175,19 @@ public class PrometheusClient2 {
         labelValue.add(metricVo.getResource());
         labelValue.add("blockQps");
         return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,metricVo.getBlockQps(),metricVo.getTimestamp());
+    }
+
+    private Collector.MetricFamilySamples.Sample resetBlockQps(MetricVo metricVo){
+        List<String> labelName = new ArrayList<>();
+        labelName.add("application");
+        labelName.add("uri");
+        labelName.add("type");
+
+        List<String> labelValue = new ArrayList<>();
+        labelValue.add(metricVo.getApp());
+        labelValue.add(metricVo.getResource());
+        labelValue.add("blockQps");
+        return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,0,metricVo.getTimestamp() + 500);
     }
 
     private Collector.MetricFamilySamples.Sample setSuccessQps(MetricVo metricVo){
@@ -171,6 +203,19 @@ public class PrometheusClient2 {
         return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,metricVo.getSuccessQps(),metricVo.getTimestamp());
     }
 
+    private Collector.MetricFamilySamples.Sample resetSuccessQps(MetricVo metricVo){
+        List<String> labelName = new ArrayList<>();
+        labelName.add("application");
+        labelName.add("uri");
+        labelName.add("type");
+
+        List<String> labelValue = new ArrayList<>();
+        labelValue.add(metricVo.getApp());
+        labelValue.add(metricVo.getResource());
+        labelValue.add("successQps");
+        return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,0,metricVo.getTimestamp() + 500);
+    }
+
     private Collector.MetricFamilySamples.Sample setExceptionQps(MetricVo metricVo){
         List<String> labelName = new ArrayList<>();
         labelName.add("application");
@@ -184,6 +229,19 @@ public class PrometheusClient2 {
         return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,metricVo.getExceptionQps(),metricVo.getTimestamp());
     }
 
+    private Collector.MetricFamilySamples.Sample resetExceptionQps(MetricVo metricVo){
+        List<String> labelName = new ArrayList<>();
+        labelName.add("application");
+        labelName.add("uri");
+        labelName.add("type");
+
+        List<String> labelValue = new ArrayList<>();
+        labelValue.add(metricVo.getApp());
+        labelValue.add(metricVo.getResource());
+        labelValue.add("exceptionQps");
+        return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,0,metricVo.getTimestamp() + 500);
+    }
+
     private Collector.MetricFamilySamples.Sample setRt(MetricVo metricVo){
         List<String> labelName = new ArrayList<>();
         labelName.add("application");
@@ -195,6 +253,19 @@ public class PrometheusClient2 {
         labelValue.add(metricVo.getResource());
         labelValue.add("rt");
         return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,metricVo.getRt(),metricVo.getTimestamp());
+    }
+
+    private Collector.MetricFamilySamples.Sample resetRt(MetricVo metricVo){
+        List<String> labelName = new ArrayList<>();
+        labelName.add("application");
+        labelName.add("uri");
+        labelName.add("type");
+
+        List<String> labelValue = new ArrayList<>();
+        labelValue.add(metricVo.getApp());
+        labelValue.add(metricVo.getResource());
+        labelValue.add("rt");
+        return new Collector.MetricFamilySamples.Sample("sentinel_client_requests",labelName,labelValue,0,metricVo.getTimestamp() + 500);
     }
 
 }
