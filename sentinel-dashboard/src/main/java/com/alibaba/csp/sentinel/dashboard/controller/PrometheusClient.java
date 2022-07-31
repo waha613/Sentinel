@@ -41,7 +41,6 @@ public class PrometheusClient {
     @Autowired
     private MeterRegistry meterRegistry;
 
-    @PostConstruct
     private void addSummary() throws InterruptedException {
         Thread thread = new Thread(){
             @Override
